@@ -23,6 +23,43 @@ def main():
     #   data row (its values joined by commas) whose value in that column equals
     #   args.value.
 
+    with open(args.filename, 'r', newline='') as file:
+        reader = csv.reader(file)
+
+        # first row is header
+        header = next(reader)
+        col = header.index(args.column)
+
+        # iterate over data
+        for row in reader:
+            # print(f'Current line: {row}')
+            if row[col] == args.value:
+                print(",".join(row))
+
+    # with open(args.filename, 'r') as file:
+    #     text = file.read()
+
+    # rows = text.split('\n')
+    # header = rows[0].split(',')
+    # col = header.index(args.column)
+    
+    # # print(col)
+    # # print(rows)
+
+    # for row, line in enumerate(rows):
+
+    #     if not line.strip():  # Skip blank lines
+    #         continue
+
+    #     tofind = line.split(',')    
+    #     # print(f'{row}: {tofind}')
+    #     if tofind[col] == args.value:
+    #         # print(f'ans: {line}')
+    #         print(f'{line}')
+
+    # print(f'{header}')
+    # print(f'{header.index(args.column)}')
+
 
 if __name__ == "__main__":
     main()
